@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Category {
+  id         String      @id @default(cuid())
+  name       String      @unique
+  slug       String      @unique
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  components Component[]
+}
+
+model Component {
+  id           String         @id @default(cuid())
+  categoryId   String
+  title        String
+  slug         String         @unique
+  description  String?
+  previewImage String?
+  htmlCode String @db.Text
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  category     Category       @relation(fields: [categoryId], references: [id])
+  tags         ComponentTag[]
+}
+
+model Tag {
+  id         String         @id @default(cuid())
+  name       String         @unique
+  createdAt  DateTime       @default(now())
+  components ComponentTag[]
+}
+
+model ComponentTag {
+  componentId String
+  tagId       String
+  component   Component @relation(fields: [componentId], references: [id], onDelete: Cascade)
+  tag         Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([componentId, tagId])
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
