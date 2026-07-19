@@ -1,11 +1,11 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 
 import { logoutAction } from "@/app/admin/actions/auth";
 import { Button } from "@/components/ui/button";
+import { NavLink } from "./nav-link";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -35,44 +35,20 @@ export function MobileMenu() {
             shadow-xl
           "
         >
-          <nav className="flex flex-col gap-3">
-            <Link
-              href="/"
-              onClick={() => setOpen(false)}
-              className="
-                rounded-lg
-                px-3
-                py-2
-                text-sm
-                font-medium
-                hover:bg-muted
-              "
-            >
+          <nav className="flex flex-col gap-2">
+            <NavLink href="/" onClick={() => setOpen(false)}>
               Components
-            </Link>
+            </NavLink>
 
-            <Link href="/admin">
-              <Button
-                className="w-full rounded-xl"
-                variant="outline"
-                onClick={() => setOpen(false)}
-              >
-                Admin
-              </Button>
-            </Link>
+            <NavLink href="/admin" onClick={() => setOpen(false)}>
+              Admin
+            </NavLink>
 
             <form action={logoutAction}>
               <Button
                 type="submit"
-                className="
-                  w-full
-                  rounded-xl
-                  border
-                  border-red-500/20
-                  bg-red-500/5
-                  text-red-500
-                "
                 variant="ghost"
+                className="w-full rounded-xl border border-red-500/20 bg-red-500/5 text-red-500"
               >
                 Logout
               </Button>

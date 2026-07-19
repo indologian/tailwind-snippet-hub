@@ -3,12 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-interface NavLinkProps {
+import { cn } from "@/lib/utils";
+
+type NavLinkProps = {
   href: string;
   children: React.ReactNode;
-}
+  onClick?: () => void;
+};
 
-export function NavLink({ href, children }: NavLinkProps) {
+export function NavLink({ href, children, onClick }: NavLinkProps) {
   const pathname = usePathname();
 
   const active = pathname === href;
@@ -16,19 +19,11 @@ export function NavLink({ href, children }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className={`
-        rounded-xl
-        px-3
-        py-2
-        text-sm
-        font-medium
-        transition-colors
-        ${
-          active
-            ? "bg-primary text-primary-foreground shadow-sm"
-            : "text-muted-foreground hover:text-foreground hover:bg-muted"
-        }
-      `}
+      onClick={onClick}
+      className={cn(
+        "rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-muted",
+        active && "bg-primary text-primary-foreground",
+      )}
     >
       {children}
     </Link>

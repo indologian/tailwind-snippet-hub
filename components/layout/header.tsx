@@ -18,9 +18,12 @@ export function Header() {
             <Code2 className="h-5 w-5" />
           </div>
 
-          <div className="hidden sm:block">
-            <h1 className="font-semibold tracking-tight">Tailwind Snippet</h1>
-            <p className="text-xs text-muted-foreground">
+          <div>
+            <h1 className="text-sm font-semibold tracking-tight sm:text-base">
+              Tailwind Snippet
+            </h1>
+
+            <p className="hidden text-xs text-muted-foreground sm:block">
               Modern UI Components
             </p>
           </div>
