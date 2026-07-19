@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { MobileMenu } from "../shared/mobile-menu";
 import { NavLink } from "../shared/nav-link";
+import { SearchBar } from "../shared/search-bar";
 
 export function Header() {
   return (
@@ -13,13 +14,12 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-3">
-          <div clp-blure="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg transition-transform duration-300 group-hover:scale-105">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg transition-transform duration-300 group-hover:scale-105">
             <Code2 className="h-5 w-5" />
           </div>
 
           <div className="hidden sm:block">
             <h1 className="font-semibold tracking-tight">Tailwind Snippet</h1>
-
             <p className="text-xs text-muted-foreground">
               Modern UI Components
             </p>
@@ -28,6 +28,8 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-3 md:flex lg:gap-6">
+          <SearchBar />
+
           <NavLink href="/">Components</NavLink>
           <NavLink href="/admin">Admin</NavLink>
 
@@ -61,6 +63,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         <div className="flex items-center gap-2 md:hidden">
+          <SearchBar mobileIconOnly />
           <ThemeToggle />
           <MobileMenu />
         </div>

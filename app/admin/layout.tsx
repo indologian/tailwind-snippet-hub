@@ -1,32 +1,27 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import "../globals.css";
+"use client";
+
+import { usePathname } from "next/navigation";
 
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
-
-export const metadata: Metadata = {
-  title: "Tailwind Snippet Hub",
-  description: "Simpan dan bagikan snippet Tailwind CSS dengan mudah",
-};
-
-export default function RootLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
+  const hideLayout =
+    pathname === "/admin/login" || pathname === "/admin/register";
+
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
+      {!hideLayout && <Header />}
 
       <main className="flex-1">{children}</main>
 
-      <Footer />
+      {!hideLayout && <Footer />}
     </div>
   );
 }

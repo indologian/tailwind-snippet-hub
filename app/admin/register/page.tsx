@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { registerAction } from "@/app/admin/actions/auth";
 
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -45,15 +47,21 @@ export default function AdminRegisterPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+    <div className="relative flex min-h-screen items-center justify-center bg-muted/30 px-4">
+      <div className="absolute right-4 top-4">
+        <ThemeToggle />
+      </div>
+
       <form
         onSubmit={onSubmit}
-        className="w-full max-w-md space-y-6 rounded-xl border border-slate-200 bg-white p-8 shadow-sm"
+        className="w-full max-w-md space-y-6 rounded-xl border bg-background p-8 shadow-sm"
       >
         <div className="space-y-2 text-center">
-          <h1 className="text-2xl font-bold text-slate-900">Register Admin</h1>
+          <h1 className="text-2xl font-bold text-foreground">Register Admin</h1>
 
-          <p className="text-sm text-slate-500">Buat akun administrator baru</p>
+          <p className="text-sm text-muted-foreground">
+            Buat akun administrator baru
+          </p>
         </div>
 
         <div className="space-y-2">
@@ -105,22 +113,18 @@ export default function AdminRegisterPage() {
           />
         </div>
 
-        <Button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-700"
-        >
+        <Button type="submit" disabled={loading} className="w-full rounded-xl">
           {loading ? "Loading..." : "Daftar"}
         </Button>
 
-        <div className="text-center text-sm text-slate-500">
+        <div className="text-center text-sm text-muted-foreground">
           Sudah punya akun?{" "}
-          <a
+          <Link
             href="/admin/login"
-            className="font-medium text-indigo-600 hover:underline"
+            className="font-medium text-primary hover:underline"
           >
             Login
-          </a>
+          </Link>
         </div>
       </form>
     </div>

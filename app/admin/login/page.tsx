@@ -8,6 +8,7 @@ import { toast } from "sonner";
 
 import { loginAction } from "@/app/admin/actions/auth";
 
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,18 +40,22 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-100 via-white to-indigo-100 px-4">
-      <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-xl">
+    <div className="relative flex min-h-screen items-center justify-center bg-gradient-to-br from-muted/40 via-background to-primary/10 px-4">
+      <div className="absolute right-4 top-4">
+        <ThemeToggle />
+      </div>
+
+      <div className="w-full max-w-md rounded-2xl border bg-background p-8 shadow-xl">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-lg">
             <Code2 size={32} />
           </div>
 
-          <h1 className="text-3xl font-bold text-slate-900">
+          <h1 className="text-3xl font-bold text-foreground">
             Tailwind Snippet Hub
           </h1>
 
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-muted-foreground">
             Login sebagai Administrator
           </p>
         </div>
@@ -62,7 +67,7 @@ export default function AdminLoginPage() {
             <div className="relative">
               <Mail
                 size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
               />
 
               <Input
@@ -82,7 +87,7 @@ export default function AdminLoginPage() {
             <div className="relative">
               <Lock
                 size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
               />
 
               <Input
@@ -97,7 +102,7 @@ export default function AdminLoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-slate-700"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition hover:text-foreground"
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
@@ -107,16 +112,16 @@ export default function AdminLoginPage() {
           <Button
             type="submit"
             disabled={loading}
-            className="h-11 w-full rounded-xl bg-indigo-600 text-base hover:bg-indigo-700"
+            className="h-11 w-full rounded-xl text-base"
           >
             {loading ? "Loading..." : "Login"}
           </Button>
 
-          <div className="text-center text-sm text-slate-500">
+          <div className="text-center text-sm text-muted-foreground">
             Belum punya akun?{" "}
             <Link
               href="/admin/register"
-              className="font-medium text-indigo-600 hover:underline"
+              className="font-medium text-primary hover:underline"
             >
               Daftar sekarang
             </Link>
