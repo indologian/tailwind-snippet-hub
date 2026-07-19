@@ -1,16 +1,16 @@
 "use client";
 
-import { Button } from "@/app/admin/components/_components/ui/buttonn";
-import { Input } from "@/app/admin/components/_components/ui/inputt";
-import { Label } from "@/app/admin/components/_components/ui/labell";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/app/admin/components/_components/ui/selectt";
-import { Textarea } from "@/app/admin/components/_components/ui/textareaa";
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
 

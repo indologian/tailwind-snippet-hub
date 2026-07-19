@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/app/admin/components/_components/ui/buttonn";
+import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";

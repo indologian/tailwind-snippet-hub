@@ -21,7 +21,7 @@ export async function createComponentAction(formData: FormData) {
     if (!parsed.success) {
         return {
             success: false,
-            message: parsed.error.errors[0].message,
+            message: parsed.error.issues[0].message,
         };
     }
 
@@ -83,7 +83,7 @@ export async function updateComponentAction(
     if (!parsed.success) {
         return {
             success: false,
-            message: parsed.error.errors[0].message,
+            message: parsed.error.issues[0].message,
         };
     }
 

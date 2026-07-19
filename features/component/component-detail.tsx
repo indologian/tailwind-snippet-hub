@@ -1,10 +1,10 @@
-import { Badge } from "@/app/admin/components/ui/badgee";
+import { Badge } from "@/components/ui/badge";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/app/admin/components/ui/tabss";
+} from "@/components/ui/tabs";
 import type { ComponentWithRelations } from "@/types";
 import Image from "next/image";
 import { CodeViewer } from "./code-viewer";

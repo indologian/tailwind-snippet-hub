@@ -1,6 +1,6 @@
 "use client";
 
-import { Input } from "@/app/admin/components/_components/ui/inputt";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";

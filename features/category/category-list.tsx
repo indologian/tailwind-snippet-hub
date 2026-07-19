@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 
 interface Category {
   id: string;
@@ -12,6 +12,7 @@ interface Category {
 
 interface CategoryListProps {
   categories: Category[];
+  activeSlug?: string;
 }
 
 export function CategoryList({ categories }: CategoryListProps) {
@@ -49,7 +50,7 @@ export function CategoryList({ categories }: CategoryListProps) {
               hover:text-primary
               dark:border-white/10
               dark:bg-slate-900
-            `
+            `,
         )}
       >
         Semua
@@ -90,7 +91,7 @@ export function CategoryList({ categories }: CategoryListProps) {
                   hover:text-primary
                   dark:border-white/10
                   dark:bg-slate-900
-                `
+                `,
             )}
           >
             {category.name}
