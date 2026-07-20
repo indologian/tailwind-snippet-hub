@@ -30,7 +30,7 @@ export function ComponentTable({ components }: ComponentTableProps) {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[700px]">
+        <table className="w-full">
           <thead className="bg-muted/40 dark:bg-slate-800/60">
             <tr>
               <th className="px-6 py-4 text-left text-sm font-medium">Judul</th>

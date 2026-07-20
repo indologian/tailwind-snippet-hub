@@ -19,11 +19,14 @@ export function CopyCodeButton({ code }: Props) {
 
       setCopied(true);
 
-      toast.success("Source code berhasil disalin 🎉");
+      toast.success("Berhasil disalin", {
+        description: "Source code telah disalin ke clipboard.",
+        duration: 3000,
+      });
 
       setTimeout(() => {
         setCopied(false);
-      }, 2000);
+      }, 3000);
     } catch {
       toast.error("Gagal menyalin source code");
     }
@@ -32,21 +35,22 @@ export function CopyCodeButton({ code }: Props) {
   return (
     <Button
       onClick={handleCopy}
+      size="sm"
       variant="outline"
       className="
         h-11
-        rounded-xl
-        border-border/70
-        bg-background/70
+        rounded-lg
+        border-white/10
+        bg-zinc-800/90
         backdrop-blur
         transition-all
+        text-stone-100
         duration-300
-        hover:-translate-y-0.5
-        hover:border-primary/40
-        hover:bg-primary/10
-        hover:shadow-lg
-        hover:shadow-primary/10
+        hover:shadow-sm
+        hover:shadow-primary/30
+        hover:bg-zinc-900
         dark:border-white/10
+        hover:text-primary
       "
     >
       {copied ? (

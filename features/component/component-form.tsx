@@ -117,6 +117,7 @@ export function ComponentForm({ categories, action, defaultValues }: Props) {
         />
         {uploading && <p className="text-sm text-slate-500">Uploading...</p>}
         {previewImage && (
+          /* eslint-disable-next-line @next/next/no-img-element */
           <img
             src={previewImage}
             alt="Preview"

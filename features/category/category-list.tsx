@@ -1,3 +1,5 @@
+// features/category/category-list.tsx
+
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -19,38 +21,14 @@ export function CategoryList({ categories }: CategoryListProps) {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex gap-2.5 overflow-x-auto pb-2 md:flex-wrap md:overflow-visible no-scrollbar">
       <Link
         href="/"
         className={cn(
-          `
-          rounded-xl
-          border
-          px-5
-          py-2.5
-          text-sm
-          font-medium
-          transition-all
-          duration-300
-          `,
+          "flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300",
           pathname === "/"
-            ? `
-              border-primary
-              bg-primary
-              text-primary-foreground
-              shadow-lg
-              shadow-primary/20
-            `
-            : `
-              border-border
-              bg-background
-              hover:-translate-y-0.5
-              hover:border-primary/40
-              hover:bg-primary/10
-              hover:text-primary
-              dark:border-white/10
-              dark:bg-slate-900
-            `,
+            ? "border-transparent bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 dark:bg-indigo-500"
+            : "border-neutral-200 bg-white/60 text-neutral-600 backdrop-blur-sm hover:border-neutral-300 hover:bg-white hover:text-neutral-900 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white",
         )}
       >
         Semua
@@ -64,34 +42,10 @@ export function CategoryList({ categories }: CategoryListProps) {
             key={category.id}
             href={`/category/${category.slug}`}
             className={cn(
-              `
-              rounded-xl
-              border
-              px-5
-              py-2.5
-              text-sm
-              font-medium
-              transition-all
-              duration-300
-              `,
+              "flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300",
               active
-                ? `
-                  border-primary
-                  bg-primary
-                  text-primary-foreground
-                  shadow-lg
-                  shadow-primary/20
-                `
-                : `
-                  border-border
-                  bg-background
-                  hover:-translate-y-0.5
-                  hover:border-primary/40
-                  hover:bg-primary/10
-                  hover:text-primary
-                  dark:border-white/10
-                  dark:bg-slate-900
-                `,
+                ? "border-transparent bg-indigo-600 text-white shadow-lg shadow-indigo-500/30 dark:bg-indigo-500"
+                : "border-neutral-200 bg-white/60 text-neutral-600 backdrop-blur-sm hover:border-neutral-300 hover:bg-white hover:text-neutral-900 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white",
             )}
           >
             {category.name}

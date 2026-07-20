@@ -3,14 +3,6 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-function slugify(text: string) {
-    return text
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/[^\w-]/g, "");
-}
-
 // =====================================
 // GET ALL
 // =====================================

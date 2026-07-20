@@ -59,7 +59,7 @@ export default function DeleteButton({ id, title }: Props) {
 
           <AlertDialogDescription>
             Kamu akan menghapus component{" "}
-            <span className="font-semibold text-foreground">"{title}"</span>.
+            <span className="font-semibold text-foreground">{`"${title}"`}</span>.
             Data yang sudah dihapus tidak dapat dikembalikan.
           </AlertDialogDescription>
         </AlertDialogHeader>

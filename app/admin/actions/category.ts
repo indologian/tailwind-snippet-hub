@@ -103,21 +103,22 @@ export async function createComponentAction(formData: FormData) {
         console.log("=== PROSES SELESAI DENGAN SUKSES ===");
         return { success: true, message: "Komponen berhasil ditambahkan." };
 
-    } catch (error: any) {
+    } catch (error) {
+        const err = error as { code?: string; meta?: unknown; message?: string };
         // 7. MENANGKAP DAN MENCETAK ERROR UTAMA
         console.log("=== TERJADI ERROR FATAL ===");
 
         // Mencetak eror utuh ke terminal untuk keperluan debugging
-        console.error(error);
+        console.error(err);
 
         // Mencetak pesan error spesifik jika itu berasal dari Prisma
-        if (error.code) {
-            console.log("Prisma Error Code:", error.code);
-            console.log("Prisma Meta Data:", error.meta);
+        if (err.code) {
+            console.log("Prisma Error Code:", err.code);
+            console.log("Prisma Meta Data:", err.meta);
         }
 
         // Mengembalikan pesan yang akan muncul di UI browser admin Anda
-        const userFriendlyError = error.message ? error.message.substring(0, 150) + "..." : "Terjadi kesalahan internal.";
+        const userFriendlyError = err.message ? err.message.substring(0, 150) + "..." : "Terjadi kesalahan internal.";
 
         return {
             success: false,
