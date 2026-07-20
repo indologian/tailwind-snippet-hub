@@ -1,3 +1,5 @@
+// app\admin\components\_component\component-form.tsx
+
 "use client";
 
 import {
@@ -61,7 +63,7 @@ export default function ComponentForm({
   const [categoryId, setCategoryId] = useState(initialData?.categoryId ?? "");
 
   const [imagePreview, setImagePreview] = useState<string | null>(
-    initialData?.previewImage ?? null
+    initialData?.previewImage ?? null,
   );
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +85,8 @@ export default function ComponentForm({
       try {
         const data = await getCategories();
         setCategories(data);
-      } catch {
+      } catch (err) {
+        console.error("getCategories error:", err);
         setError("Gagal memuat daftar kategori.");
       } finally {
         setIsLoadingCategories(false);
