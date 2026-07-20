@@ -1,5 +1,3 @@
-// app\admin\components\_component\component-form.tsx
-
 "use client";
 
 import {
@@ -7,11 +5,10 @@ import {
   updateComponentAction,
 } from "@/app/admin/actions/component";
 import { Button } from "@/components/ui/button";
-import { getCategories } from "@/lib/queries/categories";
 import { generateSlug } from "@/lib/utils";
 import { ArrowLeft, Loader2, Save } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState, useTransition } from "react";
+import { FormEvent, useState, useTransition } from "react";
 
 interface Category {
   id: string;
@@ -32,6 +29,7 @@ interface ComponentData {
 interface ComponentFormProps {
   mode: "create" | "edit";
   initialData?: ComponentData;
+  categories: Category[];
 
   onSubmit?: (formData: FormData) => Promise<{
     success: boolean;
@@ -42,6 +40,7 @@ interface ComponentFormProps {
 export default function ComponentForm({
   mode,
   initialData,
+  categories,
   onSubmit,
 }: ComponentFormProps) {
   const router = useRouter();
@@ -51,10 +50,6 @@ export default function ComponentForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
-
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
 
   const [title, setTitle] = useState(initialData?.title ?? "");
 
@@ -76,25 +71,6 @@ export default function ComponentForm({
       reader.readAsDataURL(file);
     }
   };
-
-  /**
-   * Load kategori
-   */
-  useEffect(() => {
-    async function loadCategories() {
-      try {
-        const data = await getCategories();
-        setCategories(data);
-      } catch (err) {
-        console.error("getCategories error:", err);
-        setError("Gagal memuat daftar kategori.");
-      } finally {
-        setIsLoadingCategories(false);
-      }
-    }
-
-    loadCategories();
-  }, []);
 
   /**
    * Submit Form
@@ -326,7 +302,6 @@ export default function ComponentForm({
                   required
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  disabled={isLoadingCategories}
                   className="
                     h-11
                     w-full
@@ -489,7 +464,7 @@ export default function ComponentForm({
 
               <Button
                 type="submit"
-                disabled={isPending || isSubmitting || isLoadingCategories}
+                disabled={isPending || isSubmitting}
                 className="
                   h-11
                   rounded-xl
