@@ -6,10 +6,12 @@ import { notFound } from "next/navigation";
 export default async function EditComponentPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
+
   const [component, categories] = await Promise.all([
-    getComponent(params.id),
+    getComponent(id),
     getCategories(),
   ]);
 
