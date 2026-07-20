@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { CopyCodeButton } from "@/components/shared/copy-code-button";
-import { getComponent } from "@/lib/queries/component";
+import { getComponentBySlug } from "@/lib/queries/component";
 Copy;
 
 export default async function ComponentDetailPage({
@@ -15,7 +15,7 @@ export default async function ComponentDetailPage({
 }) {
   const { slug } = await params;
 
-  const component = await getComponent(slug);
+  const component = await getComponentBySlug(slug);
 
   if (!component) {
     notFound();

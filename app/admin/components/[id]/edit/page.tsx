@@ -1,6 +1,6 @@
 import ComponentForm from "@/app/admin/components/_component/component-form";
-import { getComponent } from "@/lib/queries/component";
 import { getCategories } from "@/lib/queries/categories";
+import { getComponent } from "@/lib/queries/component";
 import { notFound } from "next/navigation";
 
 export default async function EditComponentPage({
@@ -16,8 +16,11 @@ export default async function EditComponentPage({
   ]);
 
   if (!component) {
+    console.log("eeroror");
     notFound();
   }
+
+  console.log(component);
 
   return (
     <ComponentForm

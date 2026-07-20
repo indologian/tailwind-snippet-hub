@@ -16,16 +16,38 @@ export async function getComponents() {
     });
 }
 
-export async function getComponent(slug: string) {
-    return prisma.component.findUnique({
-        where: { slug },
-        include: {
-            category: true,
-            tags: {
-                include: {
-                    tag: true,
+export async function getComponent(id: string) {
+    try {
+        return await prisma.component.findUnique({
+            where: { id },
+            include: {
+                category: true,
+                tags: {
+                    include: {
+                        tag: true,
+                    },
                 },
             },
-        },
-    });
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function getComponentBySlug(slug: string) {
+    try {
+        return await prisma.component.findUnique({
+            where: { slug },
+            include: {
+                category: true,
+                tags: {
+                    include: {
+                        tag: true,
+                    },
+                },
+            },
+        });
+    } catch (error) {
+        console.log(error);
+    }
 }
