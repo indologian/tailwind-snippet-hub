@@ -1,23 +1,17 @@
+import ComponentForm from "@/app/admin/components/_component/component-form";
+import { getComponent } from "@/lib/queries/component";
+import { getCategories } from "@/lib/queries/categories";
 import { notFound } from "next/navigation";
 
-import ComponentForm from "@/app/admin/components/_component/component-form";
-
-import { prisma } from "@/lib/prisma";
-
-interface Props {
-  params: Promise<{
-    id: string;
-  }>;
-}
-
-export default async function EditComponentPage({ params }: Props) {
-  const { id } = await params;
-
-  const component = await prisma.component.findUnique({
-    where: {
-      id,
-    },
-  });
+export default async function EditComponentPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const [component, categories] = await Promise.all([
+    getComponent(params.id),
+    getCategories(),
+  ]);
 
   if (!component) {
     notFound();
@@ -26,6 +20,7 @@ export default async function EditComponentPage({ params }: Props) {
   return (
     <ComponentForm
       mode="edit"
+      categories={categories}
       initialData={{
         id: component.id,
         title: component.title,
