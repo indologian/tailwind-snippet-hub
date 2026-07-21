@@ -16,11 +16,8 @@ export default async function EditComponentPage({
   ]);
 
   if (!component) {
-    console.log("eeroror");
     notFound();
   }
-
-  console.log(component);
 
   return (
     <ComponentForm

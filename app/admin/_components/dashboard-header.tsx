@@ -63,8 +63,9 @@ export function DashboardHeader() {
         {/* Action Buttons */}
         <div className="flex flex-col gap-3 sm:flex-row">
           {/* Add Component */}
-          <Button
-            className="
+          <Link href="/admin/components/new">
+            <Button
+              className="
     h-11
     rounded-xl
     border
@@ -83,14 +84,13 @@ export function DashboardHeader() {
     dark:border-primary/30
     dark:bg-primary/15
   "
-          >
-            <Link href="/admin/components/new">
-            <div className="flex items-center">
-              <SquarePen className="mr-2 h-4 w-4" />
-              Tambah Component
-            </div>
-            </Link>
-          </Button>
+            >
+              <div className="flex items-center">
+                <SquarePen className="mr-2 h-4 w-4" />
+                Tambah Component
+              </div>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
