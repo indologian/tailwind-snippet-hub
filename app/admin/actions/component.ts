@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { uploadPreviewImage } from "@/lib/services/upload-image";
 import { componentSchema } from "@/lib/validation/component";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 // =====================================
 // CREATE COMPONENT
@@ -56,6 +57,7 @@ export async function createComponentAction(formData: FormData) {
 
     revalidatePath("/");
     revalidatePath("/admin");
+    redirect("/admin");
 
     return {
         success: true,

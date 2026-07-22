@@ -20,7 +20,7 @@ import {
   Sparkles,
   Type,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { unstable_rethrow, useRouter } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState, useTransition } from "react";
 
 interface Category {
@@ -123,7 +123,7 @@ export default function ComponentForm({
     const formData = new FormData(event.currentTarget);
     formData.set("title", title);
     formData.set("slug", slug);
-    formData.set("categoryId", categoryId); // Pastikan categoryId terkirim
+    formData.set("categoryId", categoryId);
 
     startTransition(async () => {
       try {
@@ -149,6 +149,7 @@ export default function ComponentForm({
         router.push("/admin");
         router.refresh();
       } catch (err) {
+        unstable_rethrow(err);
         console.error(err);
         setError("Terjadi kesalahan.");
         setIsSubmitting(false);
