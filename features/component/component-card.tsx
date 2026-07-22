@@ -3,6 +3,8 @@ import type { ComponentWithRelations } from "@/types";
 import { ArrowUpRight, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { LinkPendingOverlay } from "@/components/shared/link-pending-overlay";
+
 
 export function ComponentCard({
   component,
@@ -34,6 +36,7 @@ export function ComponentCard({
         dark:hover:border-indigo-400/30
       "
     >
+      <LinkPendingOverlay />
       {/* Top Glow Line on Hover */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
