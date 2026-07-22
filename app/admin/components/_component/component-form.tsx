@@ -59,7 +59,7 @@ export default function ComponentForm({
   const [isPending, startTransition] = useTransition();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [title, setTitle] = useState(initialData?.title ?? "");
   const [slug, setSlug] = useState(initialData?.slug ?? "");
   const [categoryId, setCategoryId] = useState(initialData?.categoryId ?? "");
@@ -76,7 +76,7 @@ export default function ComponentForm({
   const selectedCategory = categories.find((c) => c.id === categoryId);
 
   const filteredCategories = categories.filter((cat) =>
-    cat.name.toLowerCase().includes(catSearch.toLowerCase())
+    cat.name.toLowerCase().includes(catSearch.toLowerCase()),
   );
 
   // Handle click outside untuk menutup dropdown
@@ -147,6 +147,7 @@ export default function ComponentForm({
           return;
         }
         router.push("/admin");
+        router.refresh();
       } catch (err) {
         console.error(err);
         setError("Terjadi kesalahan.");
@@ -231,7 +232,10 @@ export default function ComponentForm({
 
             {/* === Title + Slug === */}
             <div className="grid gap-5 md:grid-cols-2">
-              <FormField label="Judul Component" icon={<Type className="h-3.5 w-3.5" />}>
+              <FormField
+                label="Judul Component"
+                icon={<Type className="h-3.5 w-3.5" />}
+              >
                 <input
                   required
                   value={title}
@@ -258,7 +262,10 @@ export default function ComponentForm({
 
             {/* === Category + Preview === */}
             <div className="grid gap-5 md:grid-cols-2">
-              <FormField label="Kategori" icon={<FolderTree className="h-3.5 w-3.5" />}>
+              <FormField
+                label="Kategori"
+                icon={<FolderTree className="h-3.5 w-3.5" />}
+              >
                 <div className="relative" ref={catRef}>
                   {/* Hidden input to ensure categoryId is submitted in FormData */}
                   <input type="hidden" name="categoryId" value={categoryId} />
@@ -272,7 +279,9 @@ export default function ComponentForm({
                     }`}
                   >
                     <span className="truncate">
-                      {selectedCategory ? selectedCategory.name : "Pilih kategori..."}
+                      {selectedCategory
+                        ? selectedCategory.name
+                        : "Pilih kategori..."}
                     </span>
                     <ChevronDown
                       className={`h-4 w-4 shrink-0 text-neutral-400 transition-transform duration-200 ${
@@ -321,7 +330,9 @@ export default function ComponentForm({
                                     : "text-neutral-700 dark:text-neutral-300"
                                 }`}
                               >
-                                <span className="truncate">{category.name}</span>
+                                <span className="truncate">
+                                  {category.name}
+                                </span>
                                 {categoryId === category.id && (
                                   <Check className="h-4 w-4 shrink-0" />
                                 )}
@@ -335,7 +346,10 @@ export default function ComponentForm({
                 </div>
               </FormField>
 
-              <FormField label="Preview Image" icon={<FileImage className="h-3.5 w-3.5" />}>
+              <FormField
+                label="Preview Image"
+                icon={<FileImage className="h-3.5 w-3.5" />}
+              >
                 <div
                   onDragOver={(e) => {
                     e.preventDefault();
@@ -390,7 +404,10 @@ export default function ComponentForm({
             </div>
 
             {/* === Description === */}
-            <FormField label="Deskripsi" icon={<Type className="h-3.5 w-3.5" />}>
+            <FormField
+              label="Deskripsi"
+              icon={<Type className="h-3.5 w-3.5" />}
+            >
               <textarea
                 name="description"
                 rows={3}
@@ -401,7 +418,10 @@ export default function ComponentForm({
             </FormField>
 
             {/* === Source Code === */}
-            <FormField label="HTML / Tailwind CSS" icon={<Code2 className="h-3.5 w-3.5" />}>
+            <FormField
+              label="HTML / Tailwind CSS"
+              icon={<Code2 className="h-3.5 w-3.5" />}
+            >
               <div className="group/code relative overflow-hidden rounded-xl border border-neutral-200 bg-neutral-50/50 transition-all focus-within:border-indigo-500/50 focus-within:ring-2 focus-within:ring-indigo-500/10 dark:border-white/10 dark:bg-[#0d0d14]">
                 <div className="flex items-center gap-2 border-b border-neutral-200/60 px-4 py-2.5 dark:border-white/[0.06]">
                   <div className="h-2.5 w-2.5 rounded-full bg-red-400/60" />
@@ -450,7 +470,9 @@ export default function ComponentForm({
                   ) : (
                     <>
                       <Save className="mr-2 h-4 w-4" />
-                      {mode === "create" ? "Simpan Component" : "Update Component"}
+                      {mode === "create"
+                        ? "Simpan Component"
+                        : "Update Component"}
                     </>
                   )}
                 </span>
