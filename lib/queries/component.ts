@@ -25,12 +25,12 @@ export async function getComponents(
   // === Search ===
   const where = search
     ? {
-        OR: [
-          { title: { contains: search, mode: "insensitive" as const } },
-          { slug: { contains: search, mode: "insensitive" as const } },
-          { description: { contains: search, mode: "insensitive" as const } },
-        ],
-      }
+      OR: [
+        { title: { contains: search, mode: "insensitive" as const } },
+        { slug: { contains: search, mode: "insensitive" as const } },
+        { description: { contains: search, mode: "insensitive" as const } },
+      ],
+    }
     : {};
 
   // === Sort ===
@@ -64,37 +64,56 @@ export async function getComponents(
 }
 
 export async function getComponent(id: string) {
-    try {
-        return await prisma.component.findUnique({
-            where: { id },
-            include: {
-                category: true,
-                tags: {
-                    include: {
-                        tag: true,
-                    },
-                },
-            },
-        });
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    return await prisma.component.findUnique({
+      where: { id },
+      include: {
+        category: true,
+        tags: {
+          include: {
+            tag: true,
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getComponentBySlug(slug: string) {
-    try {
-        return await prisma.component.findUnique({
-            where: { slug },
-            include: {
-                category: true,
-                tags: {
-                    include: {
-                        tag: true,
-                    },
-                },
-            },
-        });
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    return await prisma.component.findUnique({
+      where: { slug },
+      include: {
+        category: true,
+        tags: {
+          include: {
+            tag: true,
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getComponentsByCategory(categoryId: string) {
+  return prisma.component.findMany({
+    where: {
+      categoryId,
+    },
+    include: {
+      category: true,
+      tags: {
+        include: {
+          tag: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 }
