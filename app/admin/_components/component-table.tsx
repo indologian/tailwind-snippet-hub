@@ -1,14 +1,25 @@
+// app/admin/_components/component-table.tsx
+
 import { getComponents } from "@/lib/queries/component";
 import { ComponentRow } from "./component-row";
 import { EmptyState } from "./empty-state";
+import { AdminPagination } from "./pagination";
 
 type ComponentTableProps = {
-  components: Awaited<ReturnType<typeof getComponents>>;
+  components: Awaited<ReturnType<typeof getComponents>>["components"];
+  currentPage: number;
+  totalPages: number;
+  searchParams?: Record<string, string | string[] | undefined>;
 };
 
 export type ComponentItem = ComponentTableProps["components"][number];
 
-export function ComponentTable({ components }: ComponentTableProps) {
+export function ComponentTable({
+  components,
+  currentPage,
+  totalPages,
+  searchParams,
+}: ComponentTableProps) {
   return (
     <section
       className="
@@ -56,6 +67,12 @@ export function ComponentTable({ components }: ComponentTableProps) {
           </tbody>
         </table>
       </div>
+
+      <AdminPagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        searchParams={searchParams}
+      />
     </section>
   );
 }

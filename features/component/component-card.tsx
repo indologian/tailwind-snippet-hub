@@ -1,3 +1,5 @@
+// features/component/component-card.tsx
+
 import { Badge } from "@/components/ui/badge";
 import type { ComponentWithRelations } from "@/types";
 import { ArrowUpRight, Eye } from "lucide-react";

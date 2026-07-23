@@ -1,14 +1,26 @@
+// app/(public)/page.tsx
+
+import { Pagination } from "@/components/shared/pagination";
 import { CategoryList } from "@/features/category/category-list";
 import { ComponentGrid } from "@/features/component/component-grid";
 import { getCategories } from "@/lib/queries/categories";
 import { getComponents } from "@/lib/queries/component";
 import { Sparkles } from "lucide-react";
 
-export default async function HomePage() {
-  const [categories, components] = await Promise.all([
+interface HomePageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const resolvedSearchParams = await searchParams;
+  const page = Math.max(1, Number(resolvedSearchParams.page) || 1);
+
+  const [categories, componentsData] = await Promise.all([
     getCategories(),
-    getComponents(),
+    getComponents(page),
   ]);
+
+  const { components, currentPage, totalPages } = componentsData;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-white dark:bg-[#0a0a0f]">
@@ -84,6 +96,12 @@ export default async function HomePage() {
           </div>
 
           <ComponentGrid components={components} />
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            searchParams={resolvedSearchParams}
+          />
         </section>
       </div>
     </main>

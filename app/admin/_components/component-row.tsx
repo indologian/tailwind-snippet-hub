@@ -1,3 +1,4 @@
+// app/admin/_components/component-row.tsx
 import { Pencil } from "lucide-react";
 import Link from "next/link";
 

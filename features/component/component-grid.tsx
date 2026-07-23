@@ -1,3 +1,5 @@
+// features/component/component-grid.tsx
+
 import type { ComponentWithRelations } from "@/types";
 import { ComponentCard } from "./component-card";
 
