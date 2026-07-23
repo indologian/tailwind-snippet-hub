@@ -1,30 +1,13 @@
-// app/(public)/page.tsx
-
 import { CategoryList } from "@/features/category/category-list";
 import { ComponentGrid } from "@/features/component/component-grid";
-import { prisma } from "@/lib/prisma";
+import { getCategories } from "@/lib/queries/categories";
+import { getComponents } from "@/lib/queries/component";
 import { Sparkles } from "lucide-react";
 
 export default async function HomePage() {
   const [categories, components] = await Promise.all([
-    prisma.category.findMany({
-      orderBy: {
-        name: "asc",
-      },
-    }),
-    prisma.component.findMany({
-      include: {
-        category: true,
-        tags: {
-          include: {
-            tag: true,
-          },
-        },
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    }),
+    getCategories(),
+    getComponents(),
   ]);
 
   return (
@@ -38,8 +21,10 @@ export default async function HomePage() {
             linear-gradient(to bottom, #000 1px, transparent 1px)
           `,
           backgroundSize: "48px 48px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 0%, #000 50%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 0%, #000 50%, transparent 100%)",
+          maskImage:
+            "radial-gradient(ellipse 80% 60% at 50% 0%, #000 50%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 60% at 50% 0%, #000 50%, transparent 100%)",
         }}
       />
 

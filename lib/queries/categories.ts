@@ -1,3 +1,5 @@
+// lib/queries/categories.ts
+
 "use server";
 import { prisma } from "@/lib/prisma";
 

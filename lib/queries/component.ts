@@ -1,3 +1,5 @@
+// lib/queries/component.ts
+
 import { prisma } from "@/lib/prisma";
 
 export async function getComponents() {
