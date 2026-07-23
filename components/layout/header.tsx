@@ -1,3 +1,5 @@
+// components/layout/header.tsx
+
 import { Code2 } from "lucide-react";
 import Link from "next/link";
 
@@ -10,7 +12,7 @@ import { SearchBar } from "../shared/search-bar";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-200/60 bg-white/70 backdrop-blur-xl dark:border-white/[0.06] dark:bg-[#0a0a0f]/70">
+    <header className="sticky top-0 z-60 w-full border-b border-neutral-200/60 bg-white/70 backdrop-blur-xl dark:border-white/[0.06] dark:bg-[#0a0a0f]/70">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-2.5">
